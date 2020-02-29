@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferch API</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+
+
+<script>
+    fetch("https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data) {
+        let result = `<h2> Data Nama Olahraga</h2>`;
+        console.log(data);
+        data.sports.forEach((team) => {
+            result +=
+                    `<div> 
+                        <ul class="w3-ul">
+                            <li>${team.strSport}</li>
+                            <img src="${team.strSportThumb}">
+                        </ul>
+                    </div>`;
+                        document.getElementById('result').innerHTML = result;
+        });
+
+    });
+</script>
+
+</html>
